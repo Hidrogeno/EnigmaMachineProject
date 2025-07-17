@@ -19,9 +19,9 @@ class Rotor:
         # Takes one character and outputs it's corresponding character
         # with the current translation table 
         
-        pos = self.position % self.length
-        self.translationTable = dict(zip(AB, AB[pos:] + AB[:pos]))
-        return self.translationTable[character] if character in self.translationTable else character
+        pos = self.position
+        translationTable = dict(zip(AB, AB[pos:] + AB[:pos]))
+        return translationTable[character] if character in translationTable else character
     
     def setFlag(self, flag):
         self.rollFlag = flag

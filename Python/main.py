@@ -1,28 +1,15 @@
-import string
+import rotor
 import ui
-ALPHABET = string.ascii_uppercase #Here we got a copy of the alphabet
-currentShift = 0
-def shift_rotor(shift):
-    shifted = ALPHABET[shift:] + ALPHABET[:shift]
-    return dict(zip(ALPHABET, shifted))
 
-def encrypt_message(message, shift):
-    _shift = shift
-    result = ""
-
-    for character in message.upper():
-        if _shift >= len(ALPHABET):
-            _shift = 0
-        _shift += 1
-        translationTable = shift_rotor(_shift)
-        if character in translationTable:
-            result += translationTable[character]
-        else:
-            result += character
-            
-    return result
-
-currentShift = ui.setup(currentShift)
+currentShift = ui.setup()
+rotorA = rotor.Rotor(currentShift[0])
+rotorB = rotor.Rotor(currentShift[1])
+rotorC = rotor.Rotor(currentShift[2])
+encryptedMessage = ""
 message = input ("Give me your message: ")
-encryptedMessage = encrypt_message(message, currentShift)
-print(encryptedMessage)
+for character in message.upper():
+    encryptedMessage += rotorC.step(rotorB.step(rotorA.step(character,True), rotorA.rollFlag),rotorB.rollFlag)
+    #encryptedMessage += rotorA.step(character,True)
+    currentShift = (rotorA.position,rotorB.position,rotorC.position)
+print(f"Here's your encrypted Message:\n{encryptedMessage}")
+print(f"Here's the final position of the rotors: {currentShift}")

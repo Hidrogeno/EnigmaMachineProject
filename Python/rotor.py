@@ -10,20 +10,20 @@ class Rotor:
         # Turns the rotor one position, it restarts once it has made a full turn
         if self.position < self.length:
             self.position = self.position+1
-            self.setFlag(False) 
+            self.set_flag(False) 
         else: 
             self.position = 0
-            self.setFlag(True)
+            self.set_flag(True)
     
     def translate(self, character):
         # Takes one character and outputs it's corresponding character
         # with the current translation table 
         
         pos = self.position
-        translationTable = dict(zip(AB, AB[pos:] + AB[:pos]))
-        return translationTable[character] if character in translationTable else character
+        translation_table = dict(zip(AB, AB[pos:] + AB[:pos]))
+        return translation_table[character] if character in translation_table else character
     
-    def setFlag(self, flag):
+    def set_flag(self, flag):
         self.rollFlag = flag
 
     def step(self, character, flag):

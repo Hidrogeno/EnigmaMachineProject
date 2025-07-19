@@ -1,4 +1,5 @@
-from constants import ALPHABET as AB
+import string
+AB = string.ascii_uppercase
 class Rotor:
     length = len(AB)-1
     rollFlag = False
@@ -23,6 +24,13 @@ class Rotor:
         translation_table = dict(zip(AB, AB[pos:] + AB[:pos]))
         return translation_table[character] if character in translation_table else character
     
+    def translate_back(self, character):
+        # Reverse method for manual decription mode
+        
+        pos = self.position
+        translation_table = dict(zip(AB[pos:] + AB[:pos], AB))
+        return translation_table[character] if character in translation_table else character
+    
     def set_flag(self, flag):
         self.rollFlag = flag
 
@@ -32,3 +40,8 @@ class Rotor:
             self.turn()
         return result
         
+    def anti_step(self,character,flag):
+        result = self.translate_back(character)
+        if flag:
+            self.turn()
+        return result

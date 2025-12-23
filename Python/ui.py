@@ -2,14 +2,22 @@ import os
 
 def welcome_message():
     os.system("clear")
+    os.system("clear")
     print("Welcome to the Enigma Machine Emulator!")
-    input()
+    input("Press Enter to continue...")
     os.system("clear")
 
 def set_shift():
-    shift_a = int(input("Give me the initial shift for rotor I :"))
-    shift_b = int(input("Give me the initial shift for rotor II :"))
-    shift_c = int(input("Give me the initial shift for rotor III :"))
+    try:
+        shift_a = int(input("Give me the initial shift for rotor A :"))
+        shift_b = int(input("Give me the initial shift for rotor B :"))
+        shift_c = int(input("Give me the initial shift for rotor C :"))
+    except ValueError:
+        print("Invalid input. Please enter an integer value.")
+        input("Press Enter to try again...")
+        os.system("clear")
+        return set_shift()
+    
     return (shift_a,shift_b,shift_c)
 
 def setup():
@@ -17,7 +25,14 @@ def setup():
     shift = set_shift()
     return shift
 
-def exit_message(encrypt, message, current_shift):
-    mode = "encrypted" if encrypt else "decrypted"
-    print(f"Your {mode} message is {message}")
-    print(f"The current gear configuration is {current_shift}")
+def exit_message(message, current_shift):
+    os.system("clear")
+    print(f"Your encrypted message is {message}")
+    print(f"The final gear configuration is (A,B,C) = {current_shift}")
+    input("Press Enter to exit...")
+    os.system("clear")
+
+def request_message():
+    os.system("clear")
+    message = input ("Give me your message:\n")
+    return message

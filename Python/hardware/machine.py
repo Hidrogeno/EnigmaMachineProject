@@ -4,12 +4,12 @@ from hardware.plugboard import Plugboard
 class Enigma:
     reflector = Reflector()
     def __init__(self, shift):
-        self.shift = shift
+        self.current_shift = shift
         self.rotor_a = Rotor(shift[0])
         self.rotor_b = Rotor(shift[1])
         self.rotor_c = Rotor(shift[2])
     
-    def encrypt(self, message, plugboard=Plugboard([('A', 'G'),('B','F')])):
+    def encrypt(self, message, plugboard=Plugboard()):
         encrypted_message = ""
         encrypted_char = ""
         for character in message.upper():

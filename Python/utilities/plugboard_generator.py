@@ -1,9 +1,9 @@
+from pathlib import Path
 import pandas as pd
 import os
 
 #### NOT YET IN USE ####
-
-file_path = os.path.join("Python", "plugboard_config.csv")
+file_path = os.path.join(Path(__file__).resolve().parent, "plugboard_config.csv")
 default_pairs = [("A", "G"), ("B", "F"), ("C", "E"), ("D", "H"), ("I", "J"),
          ("K", "L"), ("M", "N"), ("O", "P"), ("Q", "R"), ("S", "T")]
 

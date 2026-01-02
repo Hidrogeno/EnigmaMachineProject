@@ -1,6 +1,6 @@
 import hardware.machine as em
-import ui
+import ui.cli as cli
 
-enigma = em.Enigma(ui.setup())
-result = enigma.encrypt(ui.request_message())
-ui.exit_message(result, enigma.get_shift())
+enigma = em.Enigma(cli.setup())
+result = enigma.encrypt(cli.request_message())
+cli.exit_message(result, enigma.get_shift())

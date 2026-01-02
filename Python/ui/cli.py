@@ -46,6 +46,6 @@ def check_plugboard():
     try:
         open(plugboard_path, "r")
     except:
-        from utilities.plugboard_generator import generate_plugboard_config
+        from hardware.plugboard_generator import generate_plugboard_config
         generate_plugboard_config()
     return
